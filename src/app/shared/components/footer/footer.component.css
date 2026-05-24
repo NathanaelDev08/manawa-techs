@@ -1,0 +1,9 @@
+footer{background:#004C99;color:#fff;padding:60px 20px 20px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:35px;max-width:1200px;margin:0 auto}
+.footer-col h3{font-size:1.5rem;margin-bottom:15px}.footer-col h3 span{color:#FF8C1A}
+.footer-col h4{color:#FF8C1A;margin-bottom:15px}
+.footer-col a{color:#cbd5e1;text-decoration:none;display:block;margin-bottom:10px}
+.footer-col a:hover{color:#FF8C1A}
+.footer-col p{margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.footer-col i{color:#FF8C1A;width:20px}
+.footer-bottom{text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:25px;margin-top:40px}

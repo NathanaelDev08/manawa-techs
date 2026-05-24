@@ -1,0 +1,105 @@
+<!-- Hero Section -->
+<section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-primary-50 via-white to-secondary-50 pt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Texte -->
+      <div class="reveal space-y-6">
+        <div class="inline-flex items-center bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+          <i class="fas fa-rocket mr-2"></i>
+          Agence Digitale Innovante
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          Transformez votre
+          <span class="text-primary">vision digitale</span>
+          en réalité
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          MANAWA TECHS vous accompagne dans votre transformation digitale avec des solutions web sur mesure, innovantes et performantes.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#packs" 
+             class="bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-primary-600 transition-all duration-300 transform hover:scale-105">
+            Voir nos packs
+          </a>
+          <a href="https://wa.me/2250707638916" target="_blank"
+             class="border-2 border-secondary text-secondary px-8 py-4 rounded-full font-medium hover:bg-secondary hover:text-white transition-all duration-300">
+            <i class="fab fa-whatsapp mr-2"></i>
+            WhatsApp
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
+          @for (stat of stats; track stat.label) {
+            <div class="text-center reveal">
+              <div class="text-3xl font-bold text-primary">{{ stat.value }}</div>
+              <div class="text-sm text-gray-600 mt-1">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Image/Illustration -->
+      <div class="reveal hidden lg:block">
+        <div class="relative">
+          <div class="w-96 h-96 bg-gradient-to-br from-primary to-secondary rounded-full opacity-20 absolute -top-10 -right-10"></div>
+          <img src="assets/images/hero-illustration.svg" alt="MANAWA TECHS" 
+               class="relative z-10 w-full max-w-lg mx-auto">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section Fondateur -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Photo -->
+      <div class="reveal">
+        <div class="relative">
+          <div class="w-80 h-80 bg-gradient-to-br from-primary to-secondary rounded-2xl mx-auto overflow-hidden shadow-2xl">
+            <img [src]="founder.image" [alt]="founder.name" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-primary text-white px-6 py-3 rounded-xl shadow-lg">
+            <span class="font-bold">3+</span> ans d'expérience
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="reveal space-y-6">
+        <span class="text-primary font-semibold">Fondateur</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">{{ founder.name }}</h2>
+        <p class="text-secondary font-medium text-lg">{{ founder.role }}</p>
+        <p class="text-gray-600 leading-relaxed">{{ founder.description }}</p>
+        
+        <div class="flex flex-wrap gap-2">
+          @for (skill of founder.skills; track skill) {
+            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+              {{ skill }}
+            </span>
+          }
+        </div>
+
+        <div class="flex gap-3">
+          <a href="https://wa.me/2250707638916" target="_blank"
+             class="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-all duration-300">
+            <i class="fab fa-whatsapp mr-2"></i>
+            Contacter sur WhatsApp
+          </a>
+          <a href="https://linkedin.com" target="_blank"
+             class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all duration-300">
+            <i class="fab fa-linkedin-in mr-2"></i>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,138 @@
+<section id="packs" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-12 reveal">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Nos Packs</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">Des offres adaptées à chaque besoin</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Choisissez le pack qui correspond à votre projet et votre budget.
+      </p>
+    </div>
+
+    <!-- Catégories -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+      @for (category of categories; track category) {
+        <button (click)="setCategory(category)"
+                [class.bg-primary]="activeCategory === category"
+                [class.text-white]="activeCategory === category"
+                [class.bg-gray-100]="activeCategory !== category"
+                [class.text-gray-700]="activeCategory !== category"
+                class="px-6 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg">
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <!-- Packs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (pack of filteredPacks; track pack.name; let i = $index) {
+        <div [id]="'pack-' + pack.name"
+             class="reveal bg-white rounded-2xl border-2 border-gray-100 p-8 relative hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+             [class.border-primary]="pack.isPopular"
+             [style.transition-delay]="i * 100 + 'ms'">
+          
+          <!-- Badge Populaire -->
+          @if (pack.isPopular) {
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-1 rounded-full text-sm font-medium">
+              🔥 Populaire
+            </div>
+          }
+
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold mb-2">{{ pack.name }}</h3>
+            <p class="text-gray-500 text-sm">{{ pack.shortDescription }}</p>
+            
+            <div class="mt-4">
+              @if (pack.originalPrice) {
+                <span class="text-gray-400 line-through text-lg">{{ pack.originalPrice.toLocaleString() }} FCFA</span>
+              }
+              <div class="text-3xl font-bold text-primary">{{ pack.price.toLocaleString() }} <span class="text-lg">FCFA</span></div>
+            </div>
+
+            <div class="text-sm text-gray-500 mt-1">
+              <i class="fas fa-clock mr-1"></i>
+              Livraison en {{ pack.deliveryDays }} jours
+            </div>
+          </div>
+
+          <!-- Features -->
+          <ul class="space-y-3 mb-8">
+            @for (feature of pack.features; track feature.name) {
+              <li class="flex items-center text-sm">
+                @if (feature.included) {
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>{{ feature.name }}</span>
+                } @else {
+                  <i class="fas fa-times-circle text-red-400 mr-2"></i>
+                  <span class="text-gray-400">{{ feature.name }}</span>
+                }
+              </li>
+            }
+          </ul>
+
+          <!-- Actions -->
+          <div class="space-y-3">
+            <a [href]="getWhatsAppLink(pack)" target="_blank"
+               class="block w-full bg-green-500 text-white text-center py-3 rounded-full hover:bg-green-600 transition-all duration-300 font-medium">
+              <i class="fab fa-whatsapp mr-2"></i>
+              Commander sur WhatsApp
+            </a>
+            <button (click)="openPackDetails(pack)"
+                    class="block w-full border-2 border-primary text-primary text-center py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 font-medium">
+              Plus de détails
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Modal Détails Pack -->
+    @if (showModal && selectedPack) {
+      <div class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/50 backdrop-blur-sm"
+           (click)="closeModal()">
+        <div class="bg-white rounded-3xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+             (click)="$event.stopPropagation()">
+          
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h3 class="text-2xl font-bold">{{ selectedPack.name }}</h3>
+              <span class="text-primary text-sm font-medium">{{ selectedPack.category }}</span>
+            </div>
+            <button (click)="closeModal()" class="text-gray-400 hover:text-gray-600">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+
+          <p class="text-gray-600 mb-6">{{ selectedPack.description }}</p>
+
+          <div class="text-center mb-6">
+            <div class="text-4xl font-bold text-primary">{{ selectedPack.price.toLocaleString() }} FCFA</div>
+            @if (selectedPack.originalPrice) {
+              <div class="text-gray-400 line-through">{{ selectedPack.originalPrice.toLocaleString() }} FCFA</div>
+            }
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            @for (feature of selectedPack.features; track feature.name) {
+              <li class="flex items-center">
+                @if (feature.included) {
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                } @else {
+                  <i class="fas fa-times-circle text-red-400 mr-2"></i>
+                }
+                <span [class.text-gray-400]="!feature.included">{{ feature.name }}</span>
+              </li>
+            }
+          </ul>
+
+          <a [href]="getWhatsAppLink(selectedPack)" target="_blank"
+             class="block w-full bg-green-500 text-white text-center py-4 rounded-full hover:bg-green-600 transition-all duration-300 font-medium text-lg">
+            <i class="fab fa-whatsapp mr-2"></i>
+            Commander maintenant
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+</section>

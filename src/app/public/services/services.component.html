@@ -1,0 +1,38 @@
+<section id="services" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Nos Expertises</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">Des services adaptés à vos besoins</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Nous proposons une gamme complète de services digitaux pour propulser votre entreprise vers le succès.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (service of services; track service.title; let i = $index) {
+        <div class="reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
+             [style.transition-delay]="i * 100 + 'ms'">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <i [class]="service.icon + ' text-white text-2xl'"></i>
+          </div>
+          
+          <h3 class="text-xl font-bold mb-3">{{ service.title }}</h3>
+          <p class="text-gray-600 mb-4">{{ service.description }}</p>
+          
+          <ul class="space-y-2">
+            @for (feature of service.features; track feature) {
+              <li class="flex items-center text-sm text-gray-600">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                {{ feature }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

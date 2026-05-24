@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANAWA ADMIN - Connexion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0066CC, #004C99); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { background: white; border-radius: 24px; padding: 40px; max-width: 420px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    h1 { text-align: center; margin-bottom: 8px; }
+    h1 .orange { color: #FF8C1A; }
+    h1 .blue { color: #0066CC; }
+    p.sub { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 30px; }
+    label { display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 6px; }
+    input { width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 12px; font-size: 14px; margin-bottom: 16px; outline: none; transition: border 0.3s; }
+    input:focus { border-color: #FF8C1A; box-shadow: 0 0 0 3px rgba(255,140,26,0.1); }
+    button { width: 100%; padding: 14px; background: #FF8C1A; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #E67300; }
+    .error { background: #fef2f2; color: #dc2626; padding: 12px; border-radius: 12px; font-size: 14px; margin-bottom: 16px; display: none; }
+    .info { background: #f0f4f4; padding: 16px; border-radius: 12px; font-size: 12px; color: #64748b; margin-top: 20px; }
+    .info strong { display: block; margin-bottom: 4px; color: #374151; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1><span class="orange">MANAWA</span> <span class="blue">ADMIN</span></h1>
+    <p class="sub">Panneau d'administration</p>
+    
+    <div class="error" id="error">Email ou mot de passe incorrect</div>
+    
+    <label>Email</label>
+    <input type="email" id="email" placeholder="admin@manawatechs.com" value="admin@manawatechs.com">
+    
+    <label>Mot de passe</label>
+    <input type="password" id="password" placeholder="••••••••" value="Admin123456">
+    
+    <button onclick="login()"><i class="fas fa-lock"></i> Se connecter</button>
+    
+    <div class="info">
+      <strong>Identifiants par défaut :</strong>
+      📧 admin@manawatechs.com<br>
+      🔑 Admin123456
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (email === 'admin@manawatechs.com' && password === 'Admin123456') {
+        sessionStorage.setItem('adminAuth', 'true');
+        window.location.href = '/admin-dashboard.html';
+      } else {
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+    
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+</html>

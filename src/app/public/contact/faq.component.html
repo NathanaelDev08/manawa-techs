@@ -1,0 +1,39 @@
+<section id="faq" class="py-20 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-12 reveal">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">Questions fréquentes</h2>
+      <p class="text-gray-600">
+        Trouvez rapidement des réponses à vos questions.
+      </p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+      @for (faq of faqs; track faq.question; let i = $index) {
+        <div class="reveal bg-white rounded-2xl shadow-md overflow-hidden"
+             [style.transition-delay]="i * 100 + 'ms'">
+          <button (click)="toggleFaq(i)"
+                  class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors duration-300">
+            <span class="font-medium text-lg pr-4">{{ faq.question }}</span>
+            <i class="fas text-primary transition-transform duration-300"
+               [class.fa-chevron-down]="activeFaq !== i"
+               [class.fa-chevron-up]="activeFaq === i">
+            </i>
+          </button>
+          
+          <div [class.max-h-0]="activeFaq !== i"
+               [class.max-h-96]="activeFaq === i"
+               class="overflow-hidden transition-all duration-500 ease-in-out">
+            <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+              {{ faq.answer }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

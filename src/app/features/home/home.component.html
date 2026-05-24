@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <p class="hero-tagline">L'aide-informatique de votre transformation digitale</p>
+    <h1>L'architecture de votre <span>Succès Numérique</span></h1>
+    <p class="hero-subtitle">Leader en intégration Odoo, administration systèmes et imprimerie numérique en Côte d'Ivoire.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" (click)="scrollTo('services')">Nos Services</button>
+      <button class="btn btn-outline" (click)="scrollTo('contact')">Discutons du projet →</button>
+    </div>
+  </div>
+</section>
+
+<section id="founder" class="founder-section">
+  <div class="founder-card">
+    <div class="founder-img">
+      <div class="avatar-placeholder">👨‍💻</div>
+      <div class="badge-founder">Fondateur</div>
+    </div>
+    <div class="founder-info">
+      <h2>{{ founder.name }}</h2>
+      <p class="founder-title">{{ founder.title }}</p>
+      <p>{{ founder.description }}</p>
+      <h4>Maîtrise Technologique :</h4>
+      <div class="skills">
+        @for (skill of founder.skills; track skill) {
+          <span class="skill-tag">{{ skill }}</span>
+        }
+      </div>
+      <div class="founder-actions">
+        <button class="btn btn-primary" (click)="contactWA()">Contact Direct</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="section-title"><h2>Nos Expertises</h2><div class="bar"></div><p>Une offre complète pour couvrir tous vos besoins technologiques.</p></div>
+  <div class="services-grid">
+    @for (service of services; track service.id) {
+      <div class="card"><i class="fas {{ service.icon }}"></i><h3>{{ service.title }}</h3><p>{{ service.description }}</p></div>
+    }
+  </div>
+</section>
+
+<section id="packs" class="section packs-section">
+  <div class="section-title"><h2>+35 Packs de Services</h2><div class="bar"></div><p>Des solutions adaptées à tous vos besoins</p></div>
+  @for (category of packCategories(); track category.name) {
+    <div class="pack-category"><h3>{{ category.name }}</h3>
+      <div class="packs-grid">
+        @for (pack of category.packs; track pack.id) {
+          <div class="pack-card" [class.popular]="pack.popular">
+            @if (pack.popular) { <span class="popular-badge">POPULAIRE</span> }
+            <h4>{{ pack.name }}</h4>
+            <div class="price">
+              @if (pack.customPrice) { <span class="amount">Sur Devis</span> }
+              @else { <span class="amount">{{ pack.price | number:'':'fr' }}</span> <span class="currency">{{ pack.currency }}</span> }
+            </div>
+            <ul>@for (f of pack.features; track f) { <li><i class="fas fa-check-circle"></i> {{ f }}</li> }</ul>
+            <button class="btn-pack" (click)="contactWA(pack.name)">Commander</button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</section>
+
+<section id="faq" class="section">
+  <div class="section-title"><h2>Foire Aux Questions</h2><div class="bar"></div></div>
+  <div class="faq-container">
+    @for (item of faqItems; track $index) {
+      <div class="faq-item" [class.active]="openFaq() === $index">
+        <button class="faq-question" (click)="toggleFaq($index)"><span>{{ item.question }}</span><i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>{{ item.answer }}</p></div>
+      </div>
+    }
+  </div>
+</section>
+
+<app-footer></app-footer>

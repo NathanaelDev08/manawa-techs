@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Sitemaps
+Sitemap: https://manawatechs.web.app/sitemap.xml
+
+# Crawl-delay pour ne pas surcharger le serveur
+Crawl-delay: 10
+
+# Blocage des pages admin
+User-agent: *
+Disallow: /admin/*
+Disallow: /api/*

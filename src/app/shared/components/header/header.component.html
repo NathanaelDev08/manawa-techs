@@ -1,0 +1,13 @@
+<header [class.sticky]="isScrolled()">
+  <a (click)="scrollTo('home')" class="logo">MANAWA <span>TECHS</span></a>
+  <button class="menu-toggle" (click)="toggleMenu()">{{ isMenuOpen() ? '✕' : '☰' }}</button>
+  <nav [class.open]="isMenuOpen()">
+    <a (click)="scrollTo('home')">Accueil</a>
+    <a (click)="scrollTo('founder')">Fondateur</a>
+    <a (click)="scrollTo('services')">Expertises</a>
+    <a (click)="scrollTo('packs')">Packs</a>
+    <a (click)="scrollTo('faq')">FAQ</a>
+    <a (click)="scrollTo('contact')" class="btn-cta">Contact</a>
+  </nav>
+</header>
+<a [href]="'https://wa.me/' + whatsapp" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>

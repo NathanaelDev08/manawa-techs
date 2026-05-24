@@ -1,0 +1,56 @@
+<header [class.scrolled]="isScrolled" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        [class.bg-white]="isScrolled"
+        [class.shadow-lg]="isScrolled"
+        [class.bg-transparent]="!isScrolled">
+  
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center space-x-2">
+        <div class="text-2xl font-bold">
+          <span class="text-primary">MANAWA</span>
+          <span class="text-secondary">TECHS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center space-x-8">
+        @for (item of navItems; track item.label) {
+          <a [href]="item.link" 
+             class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">
+            {{ item.label }}
+          </a>
+        }
+        <a href="https://wa.me/2250707638916" target="_blank"
+           class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary-600 transition-all duration-300 font-medium">
+          Nous contacter
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMobileMenu()" class="lg:hidden text-gray-700">
+        <i class="fas text-2xl" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen) {
+      <div class="lg:hidden pb-4">
+        <div class="flex flex-col space-y-3">
+          @for (item of navItems; track item.label) {
+            <a [href]="item.link" 
+               (click)="closeMobileMenu()"
+               class="text-gray-700 hover:text-primary font-medium py-2 transition-colors duration-300">
+              {{ item.label }}
+            </a>
+          }
+          <a href="https://wa.me/2250707638916" target="_blank"
+             class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary-600 transition-all duration-300 font-medium text-center">
+            Nous contacter
+          </a>
+        </div>
+      </div>
+    }
+  </nav>
+</header>
