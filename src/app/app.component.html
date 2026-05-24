@@ -1,143 +1,78 @@
-<!-- Loader -->
-<div class="capture-loader" [class.show]="showLoader">
-  <div class="loader-content">
-    <div class="loader-spinner"></div>
-    <p>Préparation de votre demande...</p>
-    <small>Génération de la capture d'écran du pack</small>
-  </div>
-</div>
+<a href="https://wa.me/2250797969475" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" [class.show]="showBackToTop" (click)="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/2250797969475" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- Back to Top -->
-<button class="back-to-top" [class.show]="showBackToTop" (click)="scrollToTop()" aria-label="Retour en haut">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- Header -->
 <header [class.sticky]="isSticky">
-  <a href="#accueil" class="logo">MANAWA <span>TECHS</span></a>
+  <a href="#accueil" class="logo"><img src="logo.png" alt="MANAWA TECHS" style="height:40px;"></a>
   <nav class="nav-links">
-    <a href="#accueil">Accueil</a>
-    <a href="#fondateur">Fondateur</a>
-    <a href="#expertises">Expertises</a>
-    <a href="#tarifs">Packs</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact" class="btn-cta-nav">Contact</a>
+    <a href="#accueil">Accueil</a><a href="#fondateur">Fondateur</a><a href="#expertises">Expertises</a><a href="#tarifs">Packs</a><a href="#avis">Avis</a><a href="#faq">FAQ</a>
+    <button (click)="openBooking()" style="background:var(--primary-blue); color:white; border:none; padding:8px 12px; border-radius:30px; font-size:0.7rem; cursor:pointer;">📅 RDV</button>
+    <button (click)="toggleDarkMode()" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">{{darkMode ? '☀️' : '🌙'}}</button>
   </nav>
 </header>
 
-<!-- Hero -->
 <section id="accueil" class="hero">
   <div class="hero-content">
-    <span style="font-family:'Playfair Display'; font-style:italic; color:var(--primary-orange); font-size:1.1rem;">
-      L'aide-informatique de votre transformation digitale
-    </span>
+    <span style="font-family:'Playfair Display'; font-style:italic; color:var(--primary-orange); font-size:1.1rem;">L'aide-informatique de votre transformation digitale</span>
     <h1>L'architecture de votre Succès Numérique</h1>
-    <p style="font-size:1rem; max-width:600px;">
-      Leader en intégration Odoo, administration systèmes et imprimerie numérique en Côte d'Ivoire. Nous bâtissons des bases technologiques solides.
-    </p>
+    <p>Leader en Odoo, administration systèmes et imprimerie numérique en Côte d'Ivoire.</p>
     <div class="hero-btns">
-      <a href="#expertises" class="btn btn-primary" style="background:var(--primary-orange); color:white; padding:14px 30px;">
-        Nos Services
-      </a>
-      <a href="#contact" style="color:white; font-weight:600; text-decoration:none; display:flex; align-items:center; gap:8px;">
-        Discutons du projet <i class="fas fa-arrow-right"></i>
-      </a>
+      <a href="#tarifs" class="btn btn-primary" style="background:var(--primary-orange); color:white; padding:14px 30px;">Voir les packs</a>
+      <button (click)="openBooking()" style="background:white; color:var(--primary-blue); border:2px solid white; padding:14px 30px; border-radius:50px; font-weight:600; cursor:pointer;">📅 Prendre RDV</button>
     </div>
   </div>
-  <div class="hero-img" aria-label="Équipe de développeurs au travail"></div>
+  <div class="hero-img"></div>
 </section>
 
-<!-- Fondateur -->
-<section id="fondateur" class="founder-section">
+<section id="fondateur">
   <div class="founder-card">
     <div class="founder-img-box">
       <div class="founder-img">
-        <i class="fas fa-user-tie"></i>
+        <img src="founder.jpg" alt="Nathanael Kouassi" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
       </div>
       <div class="badge-founder">Fondateur</div>
     </div>
     <div class="founder-info">
       <h2>Nathanael Kouassi</h2>
-      <p style="margin: 15px 0; color: var(--gray);">
-        Expert IT avec une Licence en Informatique, spécialisé dans l'assistance technique réelle. Mon approche combine rigueur logicielle et solutions matérielles concrètes.
-      </p>
-      <h4 style="margin-top:20px; color:var(--primary-blue);">Maîtrise Technologique :</h4>
-      <div class="tech-stack">
-        @for (tech of techStack; track tech) {
-          <div class="tech-item">{{ tech }}</div>
-        }
-      </div>
-      <div style="margin-top:30px; display:flex; gap:20px; flex-wrap: wrap; justify-content:center; align-items:center;">
-        <a href="#" class="btn btn-blue" style="padding:12px 25px; border-radius:50px;">Voir Portfolio</a>
-        <a href="https://wa.me/2250797969475" style="color:var(--whatsapp); font-weight:bold; display:flex; align-items:center; gap:8px; text-decoration:none;">
-          <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Contact Direct
-        </a>
-      </div>
+      <p style="color:var(--gray);">Expert IT avec Licence en Informatique, spécialisé dans l'assistance technique réelle.</p>
+      <h4 style="color:var(--primary-blue);">Maîtrise Technologique :</h4>
+      <div class="tech-stack">@for (t of techStack; track t) {<div class="tech-item">{{t}}</div>}</div>
     </div>
   </div>
 </section>
 
-<!-- Expertises -->
-<section id="expertises" style="background: #f0f4f4;">
-  <div class="section-title">
-    <h2>Nos Expertises</h2>
-    <div class="bar"></div>
-    <p>Une offre complète pour couvrir tous vos besoins technologiques.</p>
-  </div>
-  <div class="grid-box">
-    @for (service of services; track service.title) {
-      <div class="card">
-        <i [class]="service.icon"></i>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.desc }}</p>
+<section id="expertises" style="background:#f0f4f4;">
+  <div class="section-title"><h2>Nos Expertises</h2><div class="bar"></div></div>
+  <div class="grid-box">@for (s of services; track s.title) {<div class="card"><i [class]="s.icon"></i><h3>{{s.title}}</h3><p>{{s.desc}}</p></div>}</div>
+</section>
+
+<section style="background:#fff; padding:30px 20px;">
+  <div style="max-width:600px; margin:0 auto;">
+    <input [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="🔍 Rechercher un pack..." style="width:100%; padding:16px 20px; border:2px solid #e2e8f0; border-radius:50px; font-size:16px; outline:none;">
+    @if (showResults && filteredPacks.length > 0) {
+      <div style="background:white; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.15); padding:8px; margin-top:8px;">
+        @for (p of filteredPacks; track p.name) {
+          <div (click)="openOrder(p); showResults=false; searchQuery=''" style="padding:12px; border-radius:8px; cursor:pointer; display:flex; justify-content:space-between;">
+            <span><strong>{{p.name}}</strong> <small>{{p.category}}</small></span>
+            <span style="color:var(--primary-blue); font-weight:600;">{{p.price === 0 ? 'Sur Devis' : p.price.toLocaleString() + ' CFA'}}</span>
+          </div>
+        }
       </div>
     }
   </div>
 </section>
 
-<!-- ============ PACKS TARIFAIRES ============ -->
 <section id="tarifs">
-  <div class="section-title">
-    <h2>+35 Packs de Services Abordables</h2>
-    <div class="bar"></div>
-    <p>Des solutions adaptées à tous vos besoins, avec des prix très accessibles</p>
-  </div>
-
-  @for (category of packCategories; track category.title) {
-    <div class="pack-category">
-      <h3><i [class]="category.icon"></i> {{ category.title }}</h3>
+  <div class="section-title"><h2>+35 Packs de Services</h2><div class="bar"></div></div>
+  @for (cat of packCategories; track cat.title) {
+    <div class="pack-category"><h3><i [class]="cat.icon"></i> {{cat.title}}</h3>
       <div class="packs-container">
-        @for (pack of category.packs; track pack.name) {
-          <div class="card price-card" [class.featured]="pack.featured">
-            @if (pack.featured && pack.featuredLabel) {
-              <div style="background:var(--primary-orange); color:white; position:absolute; top:15px; right:-35px; transform:rotate(45deg); width:150px; font-size:0.75rem; font-weight:bold; padding:6px 0; text-align:center; letter-spacing:1px;">
-                {{ pack.featuredLabel }}
-              </div>
-            }
-            <h4 [style.color]="pack.featured ? 'var(--primary-orange)' : 'var(--primary-blue)'">{{ pack.name }}</h4>
-            <div class="price">{{ pack.price }}</div>
-            <ul>
-              @for (feature of pack.features; track feature) {
-                <li><i class="fas fa-check-circle"></i> {{ feature }}</li>
-              }
-            </ul>
-            <a href="#" class="btn btn-primary pack-wa-btn" 
-               style="display:block; text-align:center; margin-top:15px;"
-               [style.background]="pack.featured ? 'var(--primary-orange)' : 'var(--primary-blue)'"
-               (click)="handlePackClick($event, pack.name, pack.price)">
-              @if (pack.featured) {
-                Demander un Audit
-              } @else if (pack.price.includes('Sur Devis')) {
-                Devis Personnalisé
-              } @else {
-                Commander
-              }
-            </a>
+        @for (p of cat.packs; track p.name) {
+          <div class="card price-card" [class.featured]="p.featured">
+            @if (p.featured) {<div style="background:var(--primary-orange); color:white; position:absolute; top:15px; right:-35px; transform:rotate(45deg); width:150px; font-size:0.75rem; font-weight:bold; padding:6px 0; text-align:center;">{{p.featuredLabel}}</div>}
+            <h4 [style.color]="p.featured ? 'var(--primary-orange)' : 'var(--primary-blue)'">{{p.name}}</h4>
+            <div class="price">{{p.price === 0 ? 'Sur Devis' : p.price.toLocaleString() + ' CFA'}}</div>
+            <ul>@for (f of p.features; track f) {<li><i class="fas fa-check-circle"></i> {{f}}</li>}</ul>
+            <button (click)="openOrder(p)" class="btn btn-primary" style="display:block; width:100%; text-align:center; margin-top:15px; cursor:pointer; border:none; color:white; padding:12px; border-radius:50px; font-weight:600;" [style.background]="p.featured ? 'var(--primary-orange)' : 'var(--primary-blue)'">Commander</button>
           </div>
         }
       </div>
@@ -145,60 +80,162 @@
   }
 </section>
 
-<!-- FAQ -->
-<section id="faq" style="background: #ffffff;">
-  <div class="section-title">
-    <h2>Foire Aux Questions</h2>
-    <div class="bar"></div>
-    <p>Tout ce que vous devez savoir sur nos services numériques.</p>
+<section id="avis" style="background:#f8fafc;">
+  <div class="section-title"><h2>Avis Clients</h2><div class="bar"></div>
+    <button (click)="openReview()" class="btn btn-primary" style="background:var(--primary-orange); color:white; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; margin-top:10px;">⭐ Donner mon avis</button>
   </div>
-  <div class="faq-container">
-    @for (faq of faqs; track faq.q; let i = $index) {
-      <div class="faq-item" [class.active]="activeFaqIndex === i">
-        <button class="faq-question" (click)="toggleFaq(i)">
-          {{ faq.q }}
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>{{ faq.a }}</p>
-        </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px; max-width:1000px; margin:0 auto;">
+    @for (r of reviews; track r.id) {
+      <div class="card">
+        <div style="color:#f59e0b; margin-bottom:8px;">{{'⭐'.repeat(r.rating)}}</div>
+        <p style="font-style:italic;">"{{r.comment}}"</p>
+        <p style="font-weight:600; margin-top:8px;">- {{r.name}}</p>
+        <small style="color:#94a3b8;">{{r.date}}</small>
       </div>
     }
   </div>
 </section>
 
-<!-- Footer -->
+<section id="faq" style="background:#fff;">
+  <div class="section-title"><h2>FAQ</h2><div class="bar"></div></div>
+  <div class="faq-container">
+    @for (f of faqs; track f.q; let i = $index) {
+      <div class="faq-item" [class.active]="activeFaqIndex===i">
+        <button class="faq-question" (click)="toggleFaq(i)">{{f.q}}<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>{{f.a}}</p></div>
+      </div>
+    }
+  </div>
+</section>
+
 <footer id="contact">
   <div class="footer-grid">
-    <div class="footer-col">
-      <a href="#" class="logo" style="color:white;">MANAWA <span>TECHS</span></a>
-      <p style="margin-top:20px; font-size:0.95rem; opacity:0.9;">
-        L'excellence technologique au service du terrain ivoirien.
-      </p>
-      <p style="margin-top:10px; font-size:0.8rem; color:#cbd5e1;">
-        Harmonisation orange & bleu, solutions complètes, accompagnement sur mesure.
-      </p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
-      <a href="#fondateur">À propos</a>
-      <a href="#expertises">Expertises</a>
-      <a href="#tarifs">Nos 35+ Packs</a>
-      <a href="#faq">FAQ Interactive</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contactez-nous</h4>
-      <p><i class="fab fa-whatsapp" style="color:var(--whatsapp);"></i> <a href="https://wa.me/2250797969475" style="color:white; text-decoration:none;">+225 07 97 96 94 75</a></p>
-      <p><i class="fas fa-phone"></i> +225 07 97 96 94 75</p>
-      <p><i class="fas fa-envelope"></i> contact&#64;manawatechs.ci</p>
-      <p><i class="fas fa-map-marker-alt"></i> San-Pedro / Abidjan, CI</p>
-    </div>
+    <div class="footer-col"><img src="logo.png" alt="MANAWA TECHS" style="height:40px;"><p>L'excellence technologique au service du terrain ivoirien.</p></div>
+    <div class="footer-col"><h4>Navigation</h4><a href="#accueil">Accueil</a><a href="#expertises">Expertises</a><a href="#tarifs">Packs</a><a href="#avis">Avis</a></div>
+    <div class="footer-col"><h4>Contact</h4><p><i class="fab fa-whatsapp" style="color:var(--whatsapp);"></i> +225 07 97 96 94 75</p><p><i class="fas fa-envelope"></i> contact&#64;manawatechs.ci</p></div>
   </div>
   <div style="text-align:center; border-top:1px solid rgba(255,255,255,0.1); padding-top:25px; margin-top:40px;">
     <p>&copy; 2026 MANAWA TECHS | Nathanael Kouassi</p>
-    <p style="font-size:0.75rem; color:#cbd5e1; margin-top:8px;">
-      Site optimisé pour mobile • Design orange & bleu • Plus de 35 packs complets
-    </p>
   </div>
 </footer>
+
+@if (showOrderModal) {
+<div style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center; padding:20px;" (click)="closeOrder()">
+<div style="background:white; border-radius:24px; max-width:500px; width:100%; padding:32px;" (click)="$event.stopPropagation()">
+<button (click)="closeOrder()" style="float:right; background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+<h2 style="font-weight:800;">🛒 {{selectedPack?.name}}</h2>
+<p style="color:var(--primary-blue); font-weight:600;">{{selectedPack?.price === 0 ? 'Sur Devis' : selectedPack?.price.toLocaleString() + ' CFA'}}</p>
+@if (!orderSuccess) {
+  @if (orderStep === 1) {
+    <p style="font-weight:600; margin:15px 0 10px;">Étape 1/3</p>
+    <input [(ngModel)]="order.clientName" placeholder="Nom complet *" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin-bottom:8px;">
+    <input [(ngModel)]="order.clientPhone" placeholder="Téléphone *" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin-bottom:8px;">
+    <input [(ngModel)]="order.clientEmail" placeholder="Email" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px;">
+  }
+  @if (orderStep === 2) {
+    <p style="font-weight:600; margin:15px 0 10px;">Étape 2/3</p>
+    <label>Quantité</label>
+    <input [(ngModel)]="order.quantity" type="number" min="1" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin-bottom:8px;">
+    <input [(ngModel)]="order.address" placeholder="Adresse" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin-bottom:8px;">
+    <p style="text-align:right; font-size:18px; font-weight:700;">Total : <span style="color:var(--primary-blue);">{{getTotalPrice().toLocaleString()}} CFA</span></p>
+  }
+  @if (orderStep === 3) {
+    <div style="background:#f8fafc; padding:16px; border-radius:12px; margin-top:15px;">
+      <p><strong>Pack :</strong> {{selectedPack?.name}}</p>
+      <p><strong>Client :</strong> {{order.clientName}}</p>
+      <p><strong>Tél :</strong> {{order.clientPhone}}</p>
+      <!-- Options de paiement -->
+    <p style="font-weight:600; margin:15px 0 10px;">💳 Mode de paiement</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:15px;">
+      <label style="display:flex; align-items:center; gap:8px; padding:12px; border:2px solid #f59e0b; border-radius:12px; cursor:pointer; background:#fffbf0;">
+        <input type="radio" name="payment" value="orange" checked> <span style="font-weight:600; color:#f59e0b;">🟠 Orange Money</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; padding:12px; border:2px solid #facc15; border-radius:12px; cursor:pointer; background:#fffef0;">
+        <input type="radio" name="payment" value="mtn"> <span style="font-weight:600; color:#facc15;">🟡 MTN MoMo</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; padding:12px; border:2px solid #06b6d4; border-radius:12px; cursor:pointer; background:#f0fdff;">
+        <input type="radio" name="payment" value="moov"> <span style="font-weight:600; color:#06b6d4;">🔵 Moov Money</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; padding:12px; border:2px solid #22c55e; border-radius:12px; cursor:pointer; background:#f0fff4;">
+        <input type="radio" name="payment" value="wave"> <span style="font-weight:600; color:#22c55e;">🟢 Wave</span>
+      </label>
+    </div>
+    <p style="text-align:right; font-size:18px; font-weight:700;">Total : <span style="color:var(--primary-blue);">{{getTotalPrice().toLocaleString()}} CFA</span></p>
+    </div>
+  }
+  <div style="display:flex; gap:10px; margin-top:20px;">
+    @if (orderStep > 1) {<button (click)="prevOrderStep()" style="flex:1; padding:12px; border:1px solid #d1d5db; border-radius:12px; background:white; cursor:pointer;">Retour</button>}
+    @if (orderStep < 3) {<button (click)="nextOrderStep()" style="flex:1; padding:12px; background:var(--primary-blue); color:white; border:none; border-radius:12px; cursor:pointer;">Suivant</button>}
+    @if (orderStep === 3) {<button (click)="submitOrder()" style="flex:1; padding:12px; background:#25D366; color:white; border:none; border-radius:12px; cursor:pointer; font-weight:600;">✅ Confirmer</button>}
+  </div>
+} @else {
+  <div style="text-align:center; padding:40px 0;"><div style="font-size:60px;">✅</div><h3 style="color:#16a34a;">Commande enregistrée !</h3><button (click)="closeOrder()" style="margin-top:20px; padding:12px 40px; background:var(--primary-orange); color:white; border:none; border-radius:12px; cursor:pointer;">Fermer</button></div>
+}
+</div></div>
+}
+
+@if (showReviewModal) {
+<div style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center; padding:20px;" (click)="closeReview()">
+<div style="background:white; border-radius:24px; max-width:450px; width:100%; padding:32px;" (click)="$event.stopPropagation()">
+<h2 style="font-weight:800;">⭐ Votre avis</h2>
+@if (!reviewSubmitted) {
+  <input [(ngModel)]="review.name" placeholder="Votre nom" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:10px 0;">
+  <select [(ngModel)]="review.rating" style="padding:8px; border-radius:8px; border:1px solid #d1d5db; width:100%; margin:10px 0;">
+    <option [value]="5">⭐⭐⭐⭐⭐ Excellent</option><option [value]="4">⭐⭐⭐⭐ Très bien</option><option [value]="3">⭐⭐⭐ Bien</option><option [value]="2">⭐⭐ Moyen</option><option [value]="1">⭐ Mauvais</option>
+  </select>
+  <textarea [(ngModel)]="review.comment" placeholder="Votre commentaire..." rows="3" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px;"></textarea>
+  <button (click)="submitReview()" style="width:100%; margin-top:15px; background:var(--primary-orange); color:white; border:none; padding:12px; border-radius:12px; cursor:pointer;">Publier</button>
+} @else {
+  <div style="text-align:center; padding:30px;"><div style="font-size:50px;">🙏</div><h3>Merci !</h3><button (click)="closeReview()" style="margin-top:15px; padding:10px 30px; background:var(--primary-blue); color:white; border:none; border-radius:12px; cursor:pointer;">Fermer</button></div>
+}
+</div></div>
+}
+
+@if (showBookingModal) {
+<div style="position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; display:flex; align-items:center; justify-content:center; padding:20px;" (click)="closeBooking()">
+<div style="background:white; border-radius:24px; max-width:450px; width:100%; padding:32px;" (click)="$event.stopPropagation()">
+<h2 style="font-weight:800;">📅 Prendre RDV</h2>
+@if (!bookingSuccess) {
+  <input [(ngModel)]="booking.name" placeholder="Nom *" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:8px 0;">
+  <input [(ngModel)]="booking.phone" placeholder="Téléphone *" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:8px 0;">
+  <select [(ngModel)]="booking.service" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:8px 0;">
+    <option value="">Service</option>@for (s of services; track s.title) {<option [value]="s.title">{{s.title}}</option>}
+  </select>
+  <input [(ngModel)]="booking.date" type="date" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:8px 0;">
+  <input [(ngModel)]="booking.time" type="time" style="width:100%; padding:12px; border:1px solid #d1d5db; border-radius:12px; margin:8px 0;">
+  <button (click)="submitBooking()" style="width:100%; padding:12px; background:#25D366; color:white; border:none; border-radius:12px; cursor:pointer; font-weight:600;">✅ Confirmer</button>
+} @else {
+  <div style="text-align:center; padding:30px;"><div style="font-size:50px;">✅</div><h3>RDV enregistré !</h3><button (click)="closeBooking()" style="margin-top:15px; padding:10px 30px; background:var(--primary-blue); color:white; border:none; border-radius:12px; cursor:pointer;">Fermer</button></div>
+}
+</div></div>
+}
+
+<!-- 🤖 CHATBOT FAQ -->
+<div style="position:fixed; bottom:90px; left:20px; z-index:999;">
+  <button id="chatbot-btn" (click)="chatOpen=!chatOpen" style="width:50px;height:50px;border-radius:50%;background:#0066CC;color:white;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    {{chatOpen ? '✕' : '💬'}}
+  </button>
+  @if (chatOpen) {
+    <div style="position:absolute; bottom:60px; left:0; width:320px; background:white; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.2); overflow:hidden;">
+      <div style="background:#0066CC; color:white; padding:14px 16px; font-weight:600;">
+        🤖 Assistant MANAWA
+        <p style="font-size:11px; opacity:0.8;">Réponses instantanées</p>
+      </div>
+      <div style="padding:12px; max-height:300px; overflow-y:auto;">
+        @for (msg of chatMessages; track msg.id) {
+          <div style="margin-bottom:8px; text-align:{{msg.from==='bot'?'left':'right'}};">
+            <span style="display:inline-block; padding:8px 12px; border-radius:12px; font-size:13px; max-width:85%;" [style.background]="msg.from==='bot'?'#f1f5f9':'#0066CC'" [style.color]="msg.from==='bot'?'#1e293b':'white'">
+              {{msg.text}}
+            </span>
+          </div>
+        }
+      </div>
+      <div style="display:flex; padding:8px; border-top:1px solid #e2e8f0; flex-wrap:wrap; gap:4px;">
+        <button (click)="askChatbot('💰 Prix packs ?')" style="padding:6px 10px; border-radius:20px; border:1px solid #d1d5db; background:white; font-size:11px; cursor:pointer;">💰 Prix ?</button>
+        <button (click)="askChatbot('⏱️ Délais ?')" style="padding:6px 10px; border-radius:20px; border:1px solid #d1d5db; background:white; font-size:11px; cursor:pointer;">⏱️ Délais ?</button>
+        <button (click)="askChatbot('📍 Où ?')" style="padding:6px 10px; border-radius:20px; border:1px solid #d1d5db; background:white; font-size:11px; cursor:pointer;">📍 Où ?</button>
+        <button (click)="askChatbot('📞 Contact ?')" style="padding:6px 10px; border-radius:20px; border:1px solid #d1d5db; background:white; font-size:11px; cursor:pointer;">📞 Contact ?</button>
+      </div>
+    </div>
+  }
+</div>

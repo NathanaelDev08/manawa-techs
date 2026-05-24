@@ -3,194 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANAWA ADMIN - Dashboard</title>
+  <title>MANAWA ADMIN</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #f1f5f9; display: flex; min-height: 100vh; }
-    .sidebar { width: 260px; background: #0f172a; color: white; display: flex; flex-direction: column; flex-shrink: 0; }
-    .sidebar h2 { padding: 24px; font-size: 18px; border-bottom: 1px solid #1e293b; }
-    .sidebar h2 .orange { color: #FF8C1A; }
-    .sidebar nav { flex: 1; padding: 16px; }
-    .sidebar nav a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; color: #94a3b8; text-decoration: none; font-size: 14px; margin-bottom: 4px; transition: 0.2s; cursor: pointer; }
-    .sidebar nav a:hover, .sidebar nav a.active { background: #1e293b; color: white; }
-    .sidebar nav a.active { background: #FF8C1A; }
-    .sidebar nav a.logout { color: #ef4444; margin-top: auto; }
-    .sidebar nav hr { border-color: #1e293b; margin: 16px 0; }
-    .main { flex: 1; display: flex; flex-direction: column; }
-    .topbar { background: white; padding: 16px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-    .content { flex: 1; padding: 32px; overflow-y: auto; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 32px; }
-    .stat-card { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .stat-card .num { font-size: 32px; font-weight: 700; }
-    .stat-card .lbl { font-size: 13px; color: #64748b; margin-top: 4px; }
-    .stat-card .icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; float: right; font-size: 20px; }
-    .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
-    .card h3 { margin-bottom: 16px; font-size: 18px; color: #1e293b; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    th { text-align: left; padding: 12px; background: #f8fafc; color: #64748b; font-weight: 500; }
-    td { padding: 12px; border-top: 1px solid #f1f5f9; }
-    .badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
-    .badge-pop { background: #FFF3E6; color: #FF8C1A; }
-    .badge-actif { background: #dcfce7; color: #16a34a; }
-    .btn { padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; }
-    .btn-orange { background: #FF8C1A; color: white; }
-    .btn-red { background: #fef2f2; color: #dc2626; }
-    input, textarea { width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 14px; margin-bottom: 12px; }
-    .page { display: none; }
-    .page.active { display: block; }
-    @media (max-width: 768px) { body { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; overflow-x: auto; } .sidebar nav { display: flex; gap: 8px; } }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:#f1f5f9;display:flex;min-height:100vh}
+    .sidebar{width:260px;background:#0f172a;color:white;display:flex;flex-direction:column;flex-shrink:0}
+    .sidebar h2{padding:24px;font-size:18px;border-bottom:1px solid #1e293b}
+    .sidebar h2 .orange{color:#FF8C1A}
+    .sidebar nav{flex:1;padding:16px;overflow-y:auto}
+    .sidebar nav a{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;color:#94a3b8;text-decoration:none;font-size:14px;margin-bottom:4px;cursor:pointer}
+    .sidebar nav a:hover,.sidebar nav a.active{background:#1e293b;color:white}
+    .sidebar nav a.active{background:#FF8C1A}
+    .main{flex:1;display:flex;flex-direction:column}
+    .topbar{background:white;padding:16px 32px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;justify-content:space-between}
+    .content{flex:1;padding:32px;overflow-y:auto}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+    .stat-card{background:white;padding:14px;border-radius:12px}
+    .stat-card .num{font-size:24px;font-weight:700}
+    .stat-card .lbl{font-size:11px;color:#64748b}
+    .card{background:white;border-radius:16px;padding:20px;margin-bottom:20px}
+    .card h3{margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th{text-align:left;padding:10px;background:#f8fafc;color:#64748b}
+    td{padding:10px;border-top:1px solid #f1f5f9}
+    .badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
+    .badge-new{background:#fef3c7;color:#d97706}.badge-progress{background:#dbeafe;color:#2563eb}.badge-done{background:#dcfce7;color:#16a34a}
+    .btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-size:12px;font-weight:500;color:white}
+    .btn-orange{background:#FF8C1A}.btn-blue{background:#0066CC}.btn-red{background:#ef4444}.btn-green{background:#16a34a}
+    input,textarea,select{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:10px;font-size:14px;margin-bottom:8px}
+    .page{display:none}.page.active{display:block}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+    .modal-box{background:white;border-radius:20px;padding:28px;max-width:500px;width:100%}
+    .notif{background:#ef4444;color:white;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-left:6px}
+    .bar-chart{display:flex;align-items:flex-end;gap:6px;height:100px;margin-top:8px}
+    .bar{flex:1;background:linear-gradient(180deg,#FF8C1A,#0066CC);border-radius:4px 4px 0 0;min-width:25px;position:relative}
+    .bar span{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:#64748b;white-space:nowrap}
   </style>
 </head>
 <body onload="checkAuth()">
-  <aside class="sidebar">
-    <h2><span class="orange">MANAWA</span> ADMIN</h2>
-    <nav>
-      <a onclick="showPage('dashboard')" class="active" id="nav-dashboard"><i class="fas fa-th-large"></i> Dashboard</a>
-      <a onclick="showPage('packs')" id="nav-packs"><i class="fas fa-box"></i> Packs</a>
-      <a onclick="showPage('services')" id="nav-services"><i class="fas fa-cogs"></i> Services</a>
-      <a onclick="showPage('faqs')" id="nav-faqs"><i class="fas fa-question-circle"></i> FAQs</a>
-      <a onclick="showPage('contacts')" id="nav-contacts"><i class="fas fa-envelope"></i> Messages</a>
-      <hr>
-      <a href="/" style="color:#64748b;"><i class="fas fa-external-link-alt"></i> Voir le site</a>
-      <a onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-    </nav>
-  </aside>
 
-  <div class="main">
-    <div class="topbar">
-      <span style="font-weight:600;color:#1e293b;">Panneau d'administration</span>
-      <span style="font-size:14px;color:#64748b;">👋 admin@manawatechs.com</span>
-    </div>
-    <div class="content">
-      
-      <!-- Dashboard -->
-      <div class="page active" id="page-dashboard">
-        <div class="stats">
-          <div class="stat-card"><div class="icon" style="background:#FFF3E6;color:#FF8C1A;"><i class="fas fa-box"></i></div><div class="num" style="color:#FF8C1A;" id="count-packs">0</div><div class="lbl">Packs</div></div>
-          <div class="stat-card"><div class="icon" style="background:#E6F0FF;color:#0066CC;"><i class="fas fa-cogs"></i></div><div class="num" style="color:#0066CC;">6</div><div class="lbl">Services</div></div>
-          <div class="stat-card"><div class="icon" style="background:#dcfce7;color:#16a34a;"><i class="fas fa-question-circle"></i></div><div class="num" style="color:#16a34a;" id="count-faqs">0</div><div class="lbl">FAQs</div></div>
-          <div class="stat-card"><div class="icon" style="background:#f3e8ff;color:#9333ea;"><i class="fas fa-envelope"></i></div><div class="num" style="color:#9333ea;" id="count-contacts">0</div><div class="lbl">Messages</div></div>
-        </div>
-      </div>
+<aside class="sidebar">
+  <h2><img src="logo.png" alt="MANAWA" style="height:35px;"></h2>
+  <nav>
+    <a onclick="showPage('analytics')" class="active" id="nav-analytics"><i class="fas fa-chart-line"></i> Analytics</a>
+    <a onclick="showPage('dashboard')" id="nav-dashboard"><i class="fas fa-th-large"></i> Dashboard</a>
+    <a onclick="showPage('orders')" id="nav-orders"><i class="fas fa-shopping-cart"></i> Commandes <span class="notif" id="badge">0</span></a>
+    <a onclick="showPage('packs')" id="nav-packs"><i class="fas fa-box"></i> Packs</a>
+    <a onclick="showPage('formations')" id="nav-formations"><i class="fas fa-graduation-cap"></i> Formations</a>
+    <a onclick="showPage('services')" id="nav-services"><i class="fas fa-cogs"></i> Services</a>
+    <a onclick="showPage('faqs')" id="nav-faqs"><i class="fas fa-question-circle"></i> FAQs</a>
+    <a onclick="showPage('reviews')" id="nav-reviews"><i class="fas fa-star"></i> Avis</a>
+    <a onclick="showPage('bookings')" id="nav-bookings"><i class="fas fa-calendar"></i> RDV</a>
+    <a onclick="showPage('contacts')" id="nav-contacts"><i class="fas fa-envelope"></i> Messages</a>
+    <a onclick="showPage('settings')" id="nav-settings"><i class="fas fa-cog"></i> Réglages</a>
+    <hr>
+    <a href="/" style="color:#64748b;"><i class="fas fa-external-link-alt"></i> Site</a>
+    <a onclick="logout()" style="color:#ef4444;cursor:pointer;"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+  </nav>
+</aside>
 
-      <!-- Packs -->
-      <div class="page" id="page-packs">
-        <div class="card">
-          <h3>Ajouter un pack</h3>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-            <input id="pack-name" placeholder="Nom du pack">
-            <input id="pack-price" placeholder="Prix (ex: 5 000 CFA)">
-          </div>
-          <button class="btn btn-orange" onclick="addPack()"><i class="fas fa-plus"></i> Ajouter</button>
-        </div>
-        <div class="card">
-          <h3>Packs enregistrés (<span id="pack-count">0</span>)</h3>
-          <div id="pack-list"></div>
-        </div>
-      </div>
+<div class="main">
+  <div class="topbar"><span style="font-weight:600;">🕒 <span id="clock"></span></span><span>👋 admin</span></div>
+  <div class="content" id="content"></div>
+</div>
 
-      <!-- FAQs -->
-      <div class="page" id="page-faqs">
-        <div class="card">
-          <h3>Ajouter une FAQ</h3>
-          <input id="faq-q" placeholder="Question">
-          <input id="faq-a" placeholder="Réponse">
-          <button class="btn btn-orange" onclick="addFaq()"><i class="fas fa-plus"></i> Ajouter</button>
-        </div>
-        <div class="card"><h3>FAQs (<span id="faq-count">0</span>)</h3><div id="faq-list"></div></div>
-      </div>
+<script>
+if(sessionStorage.getItem('adminAuth')!=='true')location.href='/admin-login.html';
+function logout(){sessionStorage.removeItem('adminAuth');location.href='/admin-login.html'}
+setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('fr-FR')},1000);
 
-      <!-- Contacts -->
-      <div class="page" id="page-contacts">
-        <div class="card"><h3>Messages (<span id="contact-count">0</span>)</h3><div id="contact-list"></div></div>
-      </div>
+let currentPage='analytics';
+function L(k){return JSON.parse(localStorage.getItem('manawa_'+k)||'[]')}
+function S(k,d){localStorage.setItem('manawa_'+k,JSON.stringify(d))}
 
-      <!-- Services -->
-      <div class="page" id="page-services">
-        <div class="card"><h3>Services</h3><p style="color:#64748b;">Les 6 services sont affichés sur le site public.</p></div>
-      </div>
+function initData(){
+  if(!localStorage.getItem('manawa_packs')){S('packs',[
+    {id:1,name:'Pack Dépannage Rapid',price:'5 000 CFA',category:'Maintenance & Dépannage'},
+    {id:2,name:'Pack Nettoyage PC',price:'7 500 CFA',category:'Maintenance & Dépannage'},
+    {id:3,name:'Pack Suppression Virus',price:'12 000 CFA',category:'Maintenance & Dépannage'},
+    {id:4,name:'Pack Odoo Start',price:'150 000 CFA',category:'Odoo & ERP'},
+    {id:5,name:'Pack Odoo Business',price:'450 000 CFA',category:'Odoo & ERP',featured:true},
+    {id:6,name:'Pack Odoo Enterprise',price:'Sur Devis',category:'Odoo & ERP'},
+    {id:7,name:'Pack Identité Visuelle',price:'75 000 CFA',category:'Imprimerie'},
+    {id:8,name:'Pack Signalétique',price:'120 000 CFA',category:'Imprimerie'}
+  ])}
+  if(!localStorage.getItem('manawa_formations')){S('formations',[
+    {id:1,name:'Formation Odoo',price:'80 000 CFA/pers',duration:'8h'},
+    {id:2,name:'Initiation Info',price:'45 000 CFA/pers',duration:'4h'},
+    {id:3,name:'Suite Office',price:'65 000 CFA/pers',duration:'6h'}
+  ])}
+  if(!localStorage.getItem('manawa_services')){S('services',[
+    {id:1,title:'Odoo & ERP',icon:'fas fa-project-diagram',desc:'Déploiement ERP'},
+    {id:2,title:'Admin. Systèmes',icon:'fas fa-server',desc:'Serveurs'},
+    {id:3,title:'Imprimerie',icon:'fas fa-print',desc:'Grand format'},
+    {id:4,title:'Développement Web',icon:'fas fa-code',desc:'Sites & apps'},
+    {id:5,title:'Sécurité',icon:'fas fa-shield-alt',desc:'VPN, Firewall'},
+    {id:6,title:'Formation',icon:'fas fa-graduation-cap',desc:'Compétences'}
+  ])}
+  if(!localStorage.getItem('manawa_faqs')){S('faqs',[
+    {id:1,q:'Pourquoi Odoo ?',a:'ERP tout-en-un.'},
+    {id:2,q:'Délais impression ?',a:'24h à 72h.'},
+    {id:3,q:'Support ?',a:'WhatsApp, accès à distance.'}
+  ])}
+}
 
-    </div>
-  </div>
+function refresh(){
+  document.getElementById('badge').textContent=L('orders').filter(o=>o.status==='Nouveau').length;
+  render();
+}
 
-  <script>
-    function checkAuth() {
-      if (sessionStorage.getItem('adminAuth') !== 'true') {
-        window.location.href = '/admin-login.html';
-      }
-      refreshAll();
-    }
+function showPage(p){currentPage=p;document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));document.getElementById('nav-'+p)?.classList.add('active');render()}
+function updateStatus(id,s){let o=L('orders');let i=o.findIndex(x=>x.id===id);if(i!==-1){o[i].status=s;S('orders',o);refresh()}}
+function del(type,id){if(confirm('Supprimer ?')){S(type,L(type).filter(x=>x.id!==id));refresh()}}
+
+function openEdit(type,id){
+  let item=id?L(type).find(x=>x.id===id):{};
+  let h='';
+  if(type==='packs')h=`<input id="ef1" placeholder="Nom" value="${item.name||''}"><input id="ef2" placeholder="Prix" value="${item.price||''}"><input id="ef3" placeholder="Catégorie" value="${item.category||''}">`;
+  else if(type==='formations')h=`<input id="ef1" placeholder="Nom" value="${item.name||''}"><input id="ef2" placeholder="Prix" value="${item.price||''}"><input id="ef3" placeholder="Durée" value="${item.duration||''}"><textarea id="ef4">${item.desc||''}</textarea>`;
+  else if(type==='services')h=`<input id="ef1" placeholder="Titre" value="${item.title||''}"><input id="ef2" placeholder="Icône" value="${item.icon||''}"><textarea id="ef3">${item.desc||''}</textarea>`;
+  else if(type==='faqs')h=`<input id="ef1" placeholder="Question" value="${item.q||''}"><textarea id="ef2">${item.a||''}</textarea>`;
+  let m=document.createElement('div');m.className='modal';
+  m.innerHTML=`<div class="modal-box"><h2>${id?'✏️ Modifier':'➕ Ajouter'}</h2>${h}<div style="display:flex;gap:10px;margin-top:12px;"><button class="btn btn-blue" onclick="saveEdit('${type}',${id||0})">💾</button><button class="btn btn-red" onclick="this.closest('.modal').remove()">✕</button></div></div>`;
+  document.body.appendChild(m);
+  m.addEventListener('click',function(e){if(e.target===m)m.remove()});
+}
+
+function saveEdit(type,id){
+  let data={};
+  if(type==='packs')data={name:document.getElementById('ef1')?.value,price:document.getElementById('ef2')?.value,category:document.getElementById('ef3')?.value};
+  else if(type==='formations')data={name:document.getElementById('ef1')?.value,price:document.getElementById('ef2')?.value,duration:document.getElementById('ef3')?.value,desc:document.getElementById('ef4')?.value};
+  else if(type==='services')data={title:document.getElementById('ef1')?.value,icon:document.getElementById('ef2')?.value,desc:document.getElementById('ef3')?.value};
+  else if(type==='faqs')data={q:document.getElementById('ef1')?.value,a:document.getElementById('ef2')?.value};
+  let items=L(type);
+  if(id){let i=items.findIndex(x=>x.id===id);if(i!==-1)items[i]={...items[i],...data}}
+  else{items.push({...data,id:Date.now()})}
+  S(type,items);document.querySelector('.modal')?.remove();refresh();
+}
+
+function render(){
+  const o=L('orders'),p=L('packs'),f=L('formations'),s=L('services'),fa=L('faqs'),r=L('reviews'),b=L('bookings'),c=L('contacts');
+  const v=JSON.parse(localStorage.getItem('manawa_visits')||'{"total":0,"count":0,"history":[]}');
+  const t=JSON.parse(localStorage.getItem('manawa_tracking')||'{"sections":{},"clicks":{}}');
+  let h='';
+
+  if(currentPage==='analytics'){
+    const totalVisits=v.total||0,todayVisits=v.count||0;
+    const weekVisits=(v.history||[]).filter(x=>x.timestamp>Date.now()-7*86400000).length;
+    const monthVisits=(v.history||[]).filter(x=>x.timestamp>Date.now()-30*86400000).length;
+    const sections=t.sections||{};
+    const clicks=t.clicks||{};
+    const maxSection=Math.max(1,...Object.values(sections).map(x=>x.views||0));
     
-    function showPage(name) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + name).classList.add('active');
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      document.getElementById('nav-' + name).classList.add('active');
-    }
+    h=`<h1>📊 Analytics</h1>
+    <div class="stats">
+      <div class="stat-card"><div class="num" style="color:#FF8C1A;">${totalVisits}</div><div class="lbl">Visites totales</div></div>
+      <div class="stat-card"><div class="num" style="color:#0066CC;">${todayVisits}</div><div class="lbl">Aujourd'hui</div></div>
+      <div class="stat-card"><div class="num" style="color:#16a34a;">${weekVisits}</div><div class="lbl">7 jours</div></div>
+      <div class="stat-card"><div class="num" style="color:#9333ea;">${monthVisits}</div><div class="lbl">30 jours</div></div>
+      <div class="stat-card"><div class="num" style="color:#f59e0b;">${o.length}</div><div class="lbl">Commandes</div></div>
+      <div class="stat-card"><div class="num" style="color:#ef4444;">${Object.keys(clicks).length}</div><div class="lbl">Interactions</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card">
+        <h3>📈 Sections visitées</h3>
+        <div class="bar-chart">${Object.entries(sections).sort((a,b)=>b[1].views-a[1].views).slice(0,8).map(([name,data])=>`<div class="bar" style="height:${(data.views/maxSection*100)}%" title="${name}: ${data.views} vues"><span>${name.slice(0,6)}</span></div>`).join('')||'<p style="color:#94a3b8;">Navigation sur le site pour voir</p>'}</div>
+      </div>
+      <div class="card">
+        <h3>🖱️ Clics</h3>
+        ${Object.entries(clicks).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([name,count])=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f1f5f9;"><span>${name.replace(/_/g,' ')}</span><strong style="color:#0066CC;">${count}</strong></div>`).join('')||'<p style="color:#94a3b8;">Interagissez avec le site</p>'}
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px;"><h3>📅 Dernières visites</h3>${(v.history||[]).slice(-10).reverse().map(x=>`<span style="margin-right:15px;font-size:12px;">${x.date} ${x.time}</span>`).join('')||'Aucune'}</div>`;
+  }
+  else if(currentPage==='dashboard'){
+    h=`<h1>📋 Dashboard</h1>
+    <div class="stats">
+      <div class="stat-card"><div class="num" style="color:#f59e0b;">${o.length}</div><div class="lbl">Commandes</div></div>
+      <div class="stat-card"><div class="num" style="color:#ef4444;">${o.filter(x=>x.status==='Nouveau').length}</div><div class="lbl">Nouvelles</div></div>
+      <div class="stat-card"><div class="num" style="color:#0066CC;">${p.length}</div><div class="lbl">Packs</div></div>
+      <div class="stat-card"><div class="num" style="color:#16a34a;">${f.length}</div><div class="lbl">Formations</div></div>
+    </div>`;
+  }
+  else if(currentPage==='orders'){
+    h=`<h1>🛒 Commandes (${o.length})</h1>
+    <div style="margin:12px 0">
+      <button class="btn btn-blue" onclick="window.filt='all';render()">Toutes</button>
+      <button class="btn" style="background:#fef3c7;color:#d97706" onclick="window.filt='Nouveau';render()">Nouvelles</button>
+      <button class="btn" style="background:#dbeafe;color:#2563eb" onclick="window.filt='En cours';render()">En cours</button>
+      <button class="btn" style="background:#dcfce7;color:#16a34a" onclick="window.filt='Terminé';render()">Terminées</button>
+    </div>
+    <div class="card"><table><thead><tr><th>N°</th><th>Client</th><th>Tél</th><th>Pack</th><th>Prix</th><th>Date</th><th>Statut</th><th></th></tr></thead>
+    <tbody>${(window.filt&&window.filt!=='all'?o.filter(x=>x.status===window.filt):o).map(x=>`<tr>
+      <td><strong>${x.orderNumber||x.id}</strong></td><td>${x.clientName||''}</td><td>${x.clientPhone||''}</td><td>${x.packName||''}</td>
+      <td style="color:#0066CC;font-weight:700">${x.packPrice||''}</td><td>${x.date||''}</td>
+      <td><select onchange="updateStatus(${x.id},this.value)" style="padding:4px 8px;border-radius:6px;border:1px solid #d1d5db">
+        <option ${x.status==='Nouveau'?'selected':''}>Nouveau</option><option ${x.status==='En cours'?'selected':''}>En cours</option><option ${x.status==='Terminé'?'selected':''}>Terminé</option></select></td>
+      <td><button class="btn btn-red" onclick="del('orders',${x.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('')||'<tr><td colspan="8" style="text-align:center;padding:40px">Aucune commande</td></tr>'}</tbody></table></div>`;
+  }
+  else if(currentPage==='packs'){h=`<div style="display:flex;justify-content:space-between;margin-bottom:20px;"><h1>📦 Packs (${p.length})</h1><button class="btn btn-orange" onclick="openEdit('packs')">+ Ajouter</button></div><div class="card"><table><thead><tr><th>Nom</th><th>Prix</th><th>Catégorie</th><th></th></tr></thead><tbody>${p.map(x=>`<tr><td><strong>${x.name||''}</strong></td><td style="color:#0066CC">${x.price||''}</td><td>${x.category||''}</td><td><button class="btn btn-blue" onclick="openEdit('packs',${x.id})"><i class="fas fa-edit"></i></button> <button class="btn btn-red" onclick="del('packs',${x.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('')||'<tr><td colspan="4">Aucun</td></tr>'}</tbody></table></div>`}
+  else if(currentPage==='formations'){h=`<div style="display:flex;justify-content:space-between;margin-bottom:20px;"><h1>🎓 Formations (${f.length})</h1><button class="btn btn-orange" onclick="openEdit('formations')">+ Ajouter</button></div><div class="card"><table><thead><tr><th>Nom</th><th>Prix</th><th>Durée</th><th></th></tr></thead><tbody>${f.map(x=>`<tr><td><strong>${x.name||''}</strong></td><td style="color:#0066CC">${x.price||''}</td><td>${x.duration||''}</td><td><button class="btn btn-blue" onclick="openEdit('formations',${x.id})"><i class="fas fa-edit"></i></button> <button class="btn btn-red" onclick="del('formations',${x.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('')||'<tr><td colspan="4">Aucune</td></tr>'}</tbody></table></div>`}
+  else if(currentPage==='services'){h=`<div style="display:flex;justify-content:space-between;margin-bottom:20px;"><h1>🛠️ Services (${s.length})</h1><button class="btn btn-orange" onclick="openEdit('services')">+ Ajouter</button></div><div class="card"><table><thead><tr><th>Titre</th><th>Description</th><th></th></tr></thead><tbody>${s.map(x=>`<tr><td><strong>${x.title||''}</strong></td><td>${(x.desc||'').slice(0,60)}</td><td><button class="btn btn-blue" onclick="openEdit('services',${x.id})"><i class="fas fa-edit"></i></button> <button class="btn btn-red" onclick="del('services',${x.id})"><i class="fas fa-trash"></i></button></td></tr>`).join('')||'<tr><td colspan="3">Aucun</td></tr>'}</tbody></table></div>`}
+  else if(currentPage==='faqs'){h=`<div style="display:flex;justify-content:space-between;margin-bottom:20px;"><h1>❓ FAQs (${fa.length})</h1><button class="btn btn-orange" onclick="openEdit('faqs')">+ Ajouter</button></div><div class="card">${fa.map(x=>`<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #f1f5f9;"><div><strong>${x.q||''}</strong><p style="color:#64748b;font-size:12px;">${x.a||''}</p></div><div><button class="btn btn-blue" onclick="openEdit('faqs',${x.id})"><i class="fas fa-edit"></i></button> <button class="btn btn-red" onclick="del('faqs',${x.id})"><i class="fas fa-trash"></i></button></div></div>`).join('')||'<p style="color:#94a3b8;">Aucune FAQ</p>'}</div>`}
+  else if(currentPage==='reviews'){h=`<h1>⭐ Avis (${r.length})</h1><div class="card">${r.map(x=>`<div style="padding:10px;border-bottom:1px solid #f1f5f9;"><strong>${x.name}</strong> ${'⭐'.repeat(x.rating||5)}<p>"${x.comment}"</p><small>${x.date}</small></div>`).join('')||'<p style="color:#94a3b8;">Aucun avis</p>'}</div>`}
+  else if(currentPage==='bookings'){h=`<h1>📅 Réservations (${b.length})</h1><div class="card">${b.map(x=>`<div style="padding:10px;border-bottom:1px solid #f1f5f9;"><strong>${x.name}</strong> - ${x.phone}<p>${x.service} | ${x.date} à ${x.time}</p></div>`).join('')||'<p style="color:#94a3b8;">Aucune réservation</p>'}</div>`}
+  else if(currentPage==='contacts'){h=`<h1>📧 Messages (${c.length})</h1>${c.map(x=>`<div class="card"><strong>${x.name}</strong><p>${x.email||''} ${x.phone||''}</p><p>${x.message||''}</p></div>`).join('')||'<div class="card"><p style="color:#94a3b8;">Aucun message</p></div>'}`}
+  else if(currentPage==='settings'){h=`<h1>⚙️ Réglages</h1><div class="card"><button class="btn btn-green" onclick="initData();refresh()">🔄 Réinitialiser les données</button></div>`}
+  
+  document.getElementById('content').innerHTML=h;
+}
 
-    function logout() { sessionStorage.removeItem('adminAuth'); window.location.href = '/admin-login.html'; }
-
-    function getData(key) { return JSON.parse(localStorage.getItem('manawa_' + key) || '[]'); }
-    function saveData(key, data) { localStorage.setItem('manawa_' + key, JSON.stringify(data)); refreshAll(); }
-
-    function addPack() {
-      const name = document.getElementById('pack-name').value;
-      const price = document.getElementById('pack-price').value;
-      if (!name) return;
-      const packs = getData('packs');
-      packs.push({ id: Date.now(), name, price });
-      saveData('packs', packs);
-      document.getElementById('pack-name').value = '';
-      document.getElementById('pack-price').value = '';
-    }
-
-    function deletePack(id) { saveData('packs', getData('packs').filter(p => p.id !== id)); }
-
-    function addFaq() {
-      const q = document.getElementById('faq-q').value;
-      const a = document.getElementById('faq-a').value;
-      if (!q) return;
-      const faqs = getData('faqs');
-      faqs.push({ id: Date.now(), q, a });
-      saveData('faqs', faqs);
-      document.getElementById('faq-q').value = '';
-      document.getElementById('faq-a').value = '';
-    }
-
-    function deleteFaq(id) { saveData('faqs', getData('faqs').filter(f => f.id !== id)); }
-
-    function refreshAll() {
-      const packs = getData('packs');
-      const faqs = getData('faqs');
-      const contacts = getData('contacts');
-      
-      document.getElementById('count-packs').textContent = packs.length;
-      document.getElementById('count-faqs').textContent = faqs.length;
-      document.getElementById('count-contacts').textContent = contacts.length;
-      document.getElementById('pack-count').textContent = packs.length;
-      document.getElementById('faq-count').textContent = faqs.length;
-      document.getElementById('contact-count').textContent = contacts.length;
-
-      document.getElementById('pack-list').innerHTML = packs.map(p => 
-        `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #f1f5f9;">
-          <span><strong>${p.name}</strong> - ${p.price}</span>
-          <button class="btn btn-red" onclick="deletePack(${p.id})"><i class="fas fa-trash"></i></button>
-        </div>`).join('') || '<p style="color:#94a3b8;">Aucun pack ajouté</p>';
-
-      document.getElementById('faq-list').innerHTML = faqs.map(f =>
-        `<div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #f1f5f9;">
-          <div><strong>${f.q}</strong><p style="color:#64748b;font-size:13px;">${f.a}</p></div>
-          <button class="btn btn-red" onclick="deleteFaq(${f.id})"><i class="fas fa-trash"></i></button>
-        </div>`).join('') || '<p style="color:#94a3b8;">Aucune FAQ</p>';
-
-      document.getElementById('contact-list').innerHTML = contacts.map(c =>
-        `<div style="padding:12px;border-bottom:1px solid #f1f5f9;">
-          <strong>${c.name}</strong> <span style="color:#64748b;">${c.email}</span>
-          <p style="margin-top:4px;">${c.message}</p>
-        </div>`).join('') || '<p style="color:#94a3b8;">Aucun message</p>';
-    }
-  </script>
+initData();
+refresh();
+setInterval(refresh,5000);
+</script>
 </body>
 </html>
